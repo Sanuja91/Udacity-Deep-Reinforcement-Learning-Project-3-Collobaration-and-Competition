@@ -35,7 +35,7 @@ experience_params = {
     'buffer_size': 300000,                      # size of the replay buffer
     'batch_size': 128,                         # batch size sampled from the replay buffer
     'rollout': 5,                               # n step rollout length    
-    'agent_count': 20 if MULTI else 1,  
+    'agent_count': 2,  
     'gamma': 0.99,
     'device': device
 }
@@ -52,7 +52,7 @@ params = {
     'pretrain_length': 5000,                    # minimum experience required in replay buffer to start training 
     'random_fill': False,                       # basically repeat pretrain at specific times to encourage further exploration
     'random_fill_every': 10000,             
-    'shape_rewards': True,                     # shapes 0 rewards into small negative reward
+    'shape_rewards': False,                     # shapes 0 rewards into small negative reward
     'negative_reward': -0.0001,
     'log_dir': 'runs/',
     'load_agent': True,

@@ -9,12 +9,8 @@ def initialize_env(params):
     ==========
     multiple_agents (boolean): multiple agents or single agent"""
 
-    if params['multiple_agents'] and params['offline']:
-        env = UnityEnvironment(file_name="Reacher_Windows_x86_64/Multi/Reacher.exe", worker_id = 1, no_graphics = params['no_graphics'])
-    elif params['offline']:
-        env = UnityEnvironment(file_name="Reacher_Windows_x86_64/Single/Reacher.exe", worker_id = 1, no_graphics = params['no_graphics'])
-    elif params['multiple_agents']:
-        env = UnityEnvironment(file_name='/data/Reacher_Linux_NoVis/Reacher.x86_64')
+    if params['offline']:
+        env = UnityEnvironment(file_name="Tennis_Windows_x86_64/Tennis.exe", worker_id = 1, no_graphics = params['no_graphics'])
     else:
         env = UnityEnvironment(file_name='/data/Reacher_One_Linux_NoVis/Reacher_One_Linux_NoVis.x86_64')
 
@@ -42,6 +38,7 @@ def initialize_env(params):
 
     print('States have length:', state_size)
     print('States initialized:', len(states))
+    print('Number of Agents:', num_agents)
 
     return env, env_info, states, state_size, action_size, brain_name, num_agents
 
