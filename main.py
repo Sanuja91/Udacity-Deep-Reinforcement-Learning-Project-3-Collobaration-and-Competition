@@ -62,20 +62,20 @@ params = {
     'episodes': 2000,                           # number of episodes
     'maxlen': 100,                              # sliding window size of recent scores
     'brain_name': brain_name,                   # the brain name of the unity environment
-    'achievement': 30.,                         # score at which the environment is considered beaten
+    'achievement': 0.5,                         # score at which the environment is considered beaten
     'achievement_length': 100,                  # how long the agent needs to get a score above the achievement to solve the environment
     'environment': env,             
     'pretrain': True,                           # whether pretraining with random actions should be done
-    'pretrain_length': 20000,                    # minimum experience required in replay buffer to start training 
+    'pretrain_length': 5000,                   # minimum experience required in replay buffer to start training 
     'random_fill': False,                       # basically repeat pretrain at specific times to encourage further exploration
     'random_fill_every': 10000,             
-    'shape_rewards': True,                      # shapes 0 rewards into small negative rewards
-    'negative_reward': -0.0001,
+    'hack_rewards': True,                       # hack rewards
+    'alternative_reward_scalar': 0.1,           # scales other agents rewards to current agent
     'log_dir': 'runs/',
     'load_agent': True,
-    'save_every': 100,                          # save every x episodes
+    'save_every': 1000,                         # save every x episodes
     'agent_params': {
-        'name': 'D4PG Final 2 Low LR High Pretrain',
+        'name': 'D4PG',
         'd4pg': True,
         'experience_replay': experienceReplay,
         'device': device,
