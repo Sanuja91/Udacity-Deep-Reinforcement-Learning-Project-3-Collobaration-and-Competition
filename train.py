@@ -45,6 +45,7 @@ def train(agents, params, num_processes):
 
     for i_episode in range(episode_start, n_episodes+1):
         timestep = time.time()
+        env_info = env.reset(train_mode = True)[brain_name]
         states = env_info.vector_observations
         scores = np.zeros(num_agents)
 
@@ -63,6 +64,7 @@ def train(agents, params, num_processes):
             env_info = env.step(actions)[brain_name]       # send the action to the environment
             next_states = env_info.vector_observations     # get the next state
             rewards = env_info.rewards                     # get the reward
+            # print("\n", rewards,"\n")
             dones = env_info.local_done                    # see if episode has finished
             adjusted_rewards = np.array(env_info.rewards)
 
@@ -102,15 +104,15 @@ def train(agents, params, num_processes):
             if timesteps % params['random_fill_every'] == 0:
                 pretrain = True
                 pretrain = params['pretrain_length']
-            
-        score = np.mean(scores)
+        # print(scores)
+        score = np.max(scores)            # the max of out of both scores is taken
         scores_episode.append(score)
         scores_window.append(score)       # save most recent score
      
 
-        print('\rEpisode {}\tAverage Score: {:.2f} \t Min: {:.2f} \t Max: {:.2f} \t Time: {:.2f}'.format(i_episode, np.mean(scores), np.min(scores), np.max(scores), time.time() - timestep), end="\n")
+        print('\rEpisode {}\tMax Score: {:.2f} \t Time: {:.2f}'.format(i_episode, np.max(scores), time.time() - timestep), end="\n")
         
-        if i_episode % 20 == 0:
+        if i_episode % params['save_every'] == 0:
             agents.save_agent(np.mean(scores_window), i_episode, timesteps, save_history = True)
         else:
             agents.save_agent(np.mean(scores_window), i_episode, timesteps, save_history = False)
