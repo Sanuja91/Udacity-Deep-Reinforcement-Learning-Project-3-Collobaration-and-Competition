@@ -46,6 +46,7 @@ def train(agents, params, num_processes):
         tic = time.time()
         states = env_info.vector_observations
         scores = np.zeros(num_agents)
+        env.reset()
  
         while True:
             states = torch.tensor(states)
