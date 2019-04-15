@@ -38,7 +38,7 @@ Additional tweaks such as batch normalization prior to Tanh action and negative 
 
 ## Running the Agent
 
-Simply start up the notebook and run each cell
+Simply start up the Report.ipynb notebook and run each cell
 
 ## Solving the Environment
 
